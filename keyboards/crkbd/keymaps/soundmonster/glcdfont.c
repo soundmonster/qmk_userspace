@@ -1,18 +1,19 @@
 #pragma once
 
 #ifdef __AVR__
- #include <avr/io.h>
- #include <avr/pgmspace.h>
+#    include <avr/io.h>
+#    include <avr/pgmspace.h>
 #elif defined(ESP8266)
- #include <pgmspace.h>
+#    include <pgmspace.h>
 #else
- #define PROGMEM
+#    define PROGMEM
 #endif
 
 // Corne 8x6 font with QMK Firmware Logo
 // Online editor: https://helixfonteditor.netlify.com/
 // See also: https://github.com/soundmonster/glcdfont_converter
 
+// clang-format off
 const unsigned char font[] PROGMEM = {
 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 0x3E, 0x5B, 0x4F, 0x5B, 0x3E, 0x00,
@@ -239,3 +240,4 @@ const unsigned char font[] PROGMEM = {
 0x05, 0x06, 0x0D, 0x0A, 0x05, 0x06,
 0x03, 0x02, 0x01, 0x01, 0x00, 0x00
 };
+// clang-format on
