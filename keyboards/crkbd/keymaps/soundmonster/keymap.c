@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
+#include "features/achordion.h"
+
 
 extern keymap_config_t keymap_config;
 
@@ -79,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT_split_3x6_3(
   //,-----------------------------------------.                ,-----------------------------------------.
-    QK_BOOT,RGBRST, KC_NO, KC_NO, KC_NO, KC_NO,                  KC_NO,KC_MUTE, KC_NO, KC_NO, KC_NO, KC_NO,
+    QK_BOOT,RGBRST, KC_NO, KC_NO, KC_NO, KC_NO,                  KC_NO,KC_MUTE, KC_NO, KC_NO, KC_NO, DB_TOGG,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
     RGB_TOG,RGB_HUI,RGB_SAI,RGB_VAI,RGB_SPI,KC_NO,               KC_PAUSE,KC_VOLU, KC_NO, KC_NO, KC_NO, KC_NO,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
@@ -105,6 +107,10 @@ void matrix_init_user(void) {
     #ifdef RGBLIGHT_ENABLE
       RGB_current_mode = rgblight_config.mode;
     #endif
+}
+
+void matrix_scan_user(void) {
+  achordion_task();
 }
 
 #ifdef OLED_ENABLE
@@ -293,9 +299,11 @@ bool oled_task_user(void) {
     render_mod_status_ctrl_shift(get_mods()|get_oneshot_mods());
     return false;
 }
-
 #endif
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (!process_achordion(keycode, record)) { return false; }
+
   switch (keycode) {
     case LOWER:
       if (record->event.pressed) {
@@ -339,6 +347,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
   }
   return true;
+}
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+  // Exceptionally consider the following chords as holds, even though they
+  // are on the same hand.
+  switch (tap_hold_keycode) {
+    // only apply opposite hands rule to modifiers, not layer tap keys
+    case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+      return true;
+
+    // case LGUI_T(KC_A):  // example for HRM exception
+    //   if (other_keycode == KC_Q) { return true; }
+    //   break;
+  }
+
+  // Otherwise, follow the opposite hands rule.
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+  switch (tap_hold_keycode) {
+    case LSFT_T(KC_F):
+    case RSFT_T(KC_J):
+      return 800;  // High Achordion timeout for shift keys.
+  }
+
+  return 400;
 }
 
 #ifdef RGB_MATRIX_ENABLE

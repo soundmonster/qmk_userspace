@@ -9,3 +9,6 @@ OLED_ENABLE        = yes
 OLED_DRIVER        = ssd1306
 LTO_ENABLE         = yes
 COMBO_ENABLE       = yes
+# CONSOLE_ENABLE     = yes
+
+SRC += features/achordion.c
