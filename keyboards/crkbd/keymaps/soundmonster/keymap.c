@@ -133,45 +133,48 @@ void render_mod_status_gui_alt(uint8_t modifiers) {
     static const char PROGMEM on_on_1[]   = {0xcb, 0};
     static const char PROGMEM on_on_2[]   = {0xcc, 0};
 
-    if (modifiers & MOD_MASK_GUI) {
+    bool gui = modifiers & MOD_MASK_GUI;
+    bool alt = modifiers & MOD_MASK_ALT;
+
+    if (gui) {
         oled_write_P(gui_on_1, false);
     } else {
         oled_write_P(gui_off_1, false);
     }
 
-    if ((modifiers & MOD_MASK_GUI) && (modifiers & MOD_MASK_ALT)) {
+    if (gui && alt) {
         oled_write_P(on_on_1, false);
-    } else if (modifiers & MOD_MASK_GUI) {
+    } else if (gui) {
         oled_write_P(on_off_1, false);
-    } else if (modifiers & MOD_MASK_ALT) {
+    } else if (alt) {
         oled_write_P(off_on_1, false);
     } else {
         oled_write_P(off_off_1, false);
     }
 
-    if (modifiers & MOD_MASK_ALT) {
+    if (alt) {
         oled_write_P(alt_on_1, false);
     } else {
         oled_write_P(alt_off_1, false);
     }
 
-    if (modifiers & MOD_MASK_GUI) {
+    if (gui) {
         oled_write_P(gui_on_2, false);
     } else {
         oled_write_P(gui_off_2, false);
     }
 
-    if (modifiers & MOD_MASK_GUI & MOD_MASK_ALT) {
+    if (gui && alt) {
         oled_write_P(on_on_2, false);
-    } else if (modifiers & MOD_MASK_GUI) {
+    } else if (gui) {
         oled_write_P(on_off_2, false);
-    } else if (modifiers & MOD_MASK_ALT) {
+    } else if (alt) {
         oled_write_P(off_on_2, false);
     } else {
         oled_write_P(off_off_2, false);
     }
 
-    if (modifiers & MOD_MASK_ALT) {
+    if (alt) {
         oled_write_P(alt_on_2, false);
     } else {
         oled_write_P(alt_off_2, false);
@@ -199,45 +202,48 @@ void render_mod_status_ctrl_shift(uint8_t modifiers) {
     static const char PROGMEM on_on_1[]   = {0xcb, 0};
     static const char PROGMEM on_on_2[]   = {0xcc, 0};
 
-    if (modifiers & MOD_MASK_CTRL) {
+    bool ctrl = modifiers & MOD_MASK_CTRL;
+    bool shift = modifiers & MOD_MASK_SHIFT;
+
+    if (ctrl) {
         oled_write_P(ctrl_on_1, false);
     } else {
         oled_write_P(ctrl_off_1, false);
     }
 
-    if ((modifiers & MOD_MASK_CTRL) && (modifiers & MOD_MASK_SHIFT)) {
+    if (ctrl && shift) {
         oled_write_P(on_on_1, false);
-    } else if (modifiers & MOD_MASK_CTRL) {
+    } else if (ctrl) {
         oled_write_P(on_off_1, false);
-    } else if (modifiers & MOD_MASK_SHIFT) {
+    } else if (shift) {
         oled_write_P(off_on_1, false);
     } else {
         oled_write_P(off_off_1, false);
     }
 
-    if (modifiers & MOD_MASK_SHIFT) {
+    if (shift) {
         oled_write_P(shift_on_1, false);
     } else {
         oled_write_P(shift_off_1, false);
     }
 
-    if (modifiers & MOD_MASK_CTRL) {
+    if (ctrl) {
         oled_write_P(ctrl_on_2, false);
     } else {
         oled_write_P(ctrl_off_2, false);
     }
 
-    if (modifiers & MOD_MASK_CTRL & MOD_MASK_SHIFT) {
+    if (ctrl && shift) {
         oled_write_P(on_on_2, false);
-    } else if (modifiers & MOD_MASK_CTRL) {
+    } else if (ctrl) {
         oled_write_P(on_off_2, false);
-    } else if (modifiers & MOD_MASK_SHIFT) {
+    } else if (shift) {
         oled_write_P(off_on_2, false);
     } else {
         oled_write_P(off_off_2, false);
     }
 
-    if (modifiers & MOD_MASK_SHIFT) {
+    if (shift) {
         oled_write_P(shift_on_2, false);
     } else {
         oled_write_P(shift_off_2, false);
