@@ -202,7 +202,7 @@ void render_mod_status_ctrl_shift(uint8_t modifiers) {
     static const char PROGMEM on_on_1[]   = {0xcb, 0};
     static const char PROGMEM on_on_2[]   = {0xcc, 0};
 
-    bool ctrl = modifiers & MOD_MASK_CTRL;
+    bool ctrl  = modifiers & MOD_MASK_CTRL;
     bool shift = modifiers & MOD_MASK_SHIFT;
 
     if (ctrl) {
@@ -358,7 +358,7 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
             return 800; // High Achordion timeout for shift keys.
     }
 
-    return 400;
+    return 300; // moderate timeout for other tap mods
 }
 
 #ifdef RGB_MATRIX_ENABLE
