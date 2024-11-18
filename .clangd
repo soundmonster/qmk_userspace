@@ -2,3 +2,5 @@ CompileFlags:
   Add: [-Wno-unknown-attributes, -Wno-maybe-uninitialized, -Wno-unknown-warning-option]
   Remove: [-W*, -mcall-prologues]
   Compiler: clang
+SemanticTokens:
+  DisabledKinds: [InactiveCode]

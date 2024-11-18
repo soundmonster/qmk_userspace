@@ -36,6 +36,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Chording/home row mods
 #define TAPPING_TERM 200
+// streak detection
+#define ACHORDION_STREAK
 
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
 // #define TAPPING_FORCE_HOLD

@@ -335,18 +335,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 }
 
 bool achordion_chord(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record, uint16_t other_keycode, keyrecord_t* other_record) {
-    // Exceptionally consider the following chords as holds, even though they
-    // are on the same hand.
-    switch (tap_hold_keycode) {
-        // only apply opposite hands rule to modifiers, not layer tap keys
-        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-            return true;
-
-            // case LGUI_T(KC_A):  // example for HRM exception
-            //   if (other_keycode == KC_Q) { return true; }
-            //   break;
+    // Layer chords are holds, even though they are on the same hand.
+    if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
+        return true; // Disable chord prevention on layer-tap keys.
     }
-
     // Otherwise, follow the opposite hands rule.
     return achordion_opposite_hands(tap_hold_record, other_record);
 }
@@ -359,6 +351,20 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
     }
 
     return 300; // moderate timeout for other tap mods
+}
+
+uint16_t achordion_streak_timeout(uint16_t tap_hold_keycode) {
+    if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
+        return 0; // Disable streak detection on layer-tap keys.
+    }
+
+    // Otherwise, tap_hold_keycode is a mod-tap key.
+    uint8_t mod = mod_config(QK_MOD_TAP_GET_MODS(tap_hold_keycode));
+    if ((mod & MOD_LSFT) != 0 || (mod & MOD_RSFT) != 0) {
+        return 50; // A shorter streak timeout for Shift mod-tap keys.
+    } else {
+        return 120; // A longer timeout otherwise.
+    }
 }
 
 #ifdef RGB_MATRIX_ENABLE
