@@ -34,7 +34,7 @@ combo_t                key_combos[COMBO_COUNT] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_split_3x6_3(
   //,--------+------------+------------+------------+------------+------.  ,------+------------+------------+------------+---------------+--------.
-     KC_NO,       KC_Q,       KC_W,        KC_E,        KC_R,     KC_T,      KC_Y,     KC_U,        KC_I,        KC_O,         KC_P,       KC_NO,
+     KC_NO,       KC_Q,  HYPR_T(KC_W),        KC_E,        KC_R,     KC_T,      KC_Y,     KC_U,        KC_I,   HYPR_T(KC_O),       KC_P,      KC_NO,
   //|--------+------------+------------+------------+------------+------|   |------+------------+------------+------------+---------------+--------|
      KC_NO, LGUI_T(KC_A),RALT_T(KC_S),LCTL_T(KC_D),LSFT_T(KC_F), KC_G,      KC_H, RSFT_T(KC_J),RCTL_T(KC_K),RALT_T(KC_L),RGUI_T(KC_SCLN),  KC_NO,
   //|--------+------------+------------+------------+------------+------|   |------+------------+------------+------------+---------------+--------|
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_split_3x6_3(
   //,--------+------------+------------+------------+------------+------.   ,------+---------------+-------------+----------------+---------------+--------.
-       KC_NO,     KC_1,        KC_2,        KC_3,        KC_4,     KC_5,      KC_6,     KC_7,            KC_8,          KC_9,           KC_0,       KC_NO,
+       KC_NO,     KC_1,     HYPR_T(KC_2),   KC_3,        KC_4,     KC_5,      KC_6,     KC_7,            KC_8,       HYPR_T(KC_O),      KC_0,       KC_NO,
   //|--------+------------+------------+------------+------------+------|   |------+---------------+-------------+----------------+---------------+--------|
        KC_NO,    KC_LGUI,     KC_RALT,     KC_LCTL,     KC_LSFT,  KC_NO,    KC_LEFT,RSFT_T(KC_DOWN),RCTL_T(KC_UP),RALT_T(KC_RIGHT),    KC_RGUI,     KC_NO,
   //|--------+------------+------------+------------+------------+------|   |------+---------------+-------------+----------------+---------------+--------|
@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_RAISE] = LAYOUT_split_3x6_3(
   //,--------+------------+-------------+-------------+-------------+------.   ,------+--------------+---------------+---------------+---------------+-------.
-       KC_NO,     KC_EXLM,      KC_AT,      KC_HASH,        KC_DLR,  KC_PERC,   KC_CIRC,    KC_AMPR,      KC_ASTR,         KC_LPRN,        KC_RPRN,    KC_NO,
+       KC_NO,     KC_EXLM,  HYPR_T(KC_AT),      KC_HASH,        KC_DLR,  KC_PERC,   KC_CIRC,    KC_AMPR,      KC_ASTR,     HYPR_T(KC_LPRN),    KC_RPRN,    KC_NO,
   //---------+------------+-------------+-------------+-------------+------|   |------+--------------+---------------+---------------+---------------+-------|
        KC_NO, LGUI_T(KC_F1),RALT_T(KC_F2),LCTL_T(KC_F3),LSFT_T(KC_F4),KC_F5,    KC_MINS,RSFT_T(KC_EQL),RCTL_T(KC_LBRC),RALT_T(KC_RBRC),RGUI_T(KC_BSLS),KC_NO,
   //|--------+------------+-------------+-------------+-------------+------|   |------+--------------+---------------+---------------+---------------+-------|
@@ -70,9 +70,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = LAYOUT_split_3x6_3(
   //,-----------------------------------------.                ,-----------------------------------------.
-    QK_BOOT,RGBRST, KC_NO, KC_NO, KC_NO, KC_NO,                  KC_NO,KC_MUTE, KC_NO, KC_NO, KC_NO, DB_TOGG,
+    QK_BOOT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                  KC_NO,KC_MUTE, KC_NO, KC_NO, KC_NO, DB_TOGG,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-    RGB_TOG,RGB_HUI,RGB_SAI,RGB_VAI,RGB_SPI,KC_NO,               KC_PAUSE,KC_VOLU, KC_NO, KC_NO, KC_NO, KC_NO,
+    RGB_TOG,RGB_HUI,RGB_SAI,RGB_VAI,RGB_SPI,KC_NO,               KC_PAUSE,KC_VOLU, KC_NO, KC_NO, KC_NO, RGBRST,
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
     RGB_MOD,RGB_HUD,RGB_SAD,RGB_VAD,RGB_SPD,KC_NO,               KC_SCRL,KC_VOLD, KC_NO, KC_NO, KC_NO, RGB_RMOD,
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
