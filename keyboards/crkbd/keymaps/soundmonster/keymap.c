@@ -69,15 +69,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_ADJUST] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------.                ,-----------------------------------------.
-    QK_BOOT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                  KC_NO,KC_MUTE, KC_NO, KC_NO, KC_NO, DB_TOGG,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-    RGB_TOG,RGB_HUI,RGB_SAI,RGB_VAI,RGB_SPI,KC_NO,               KC_PAUSE,KC_VOLU, KC_NO, KC_NO, KC_NO, RGBRST,
-  //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-    RGB_MOD,RGB_HUD,RGB_SAD,RGB_VAD,RGB_SPD,KC_NO,               KC_SCRL,KC_VOLD, KC_NO, KC_NO, KC_NO, RGB_RMOD,
-  //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                 KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO
-                    //`------------------------------'   `-----------------------------'
+  //,---------------------------------------------.         ,-----------------------------------------.
+    QK_BOOT,  KC_NO,  KC_NO,  KC_NO,  KC_NO, KC_NO,           KC_NO,KC_MUTE, KC_NO, KC_NO, KC_NO, DB_TOGG,
+  //|------+----- -+-- ----+- -----+- -----+------|         |------+------+------+------+------+--------|
+    RM_TOGG,RM_HUEU,RM_SATU,RM_VALU,RM_SPDU, KC_NO,         KC_PAUSE,KC_VOLU,KC_NO, KC_NO, KC_NO,  KC_NO,
+  //|------+------+------+------+------+----------|         |------+------+------+------+------+--------|
+    RM_NEXT,RM_HUED,RM_SATD,RM_VALD,RM_SPDD, KC_NO,         KC_SCRL,KC_VOLD, KC_NO, KC_NO, KC_NO, RM_PREV,
+  //|------+-------+-------+-------+-------+------|         |------+-------+------+------+------+--------|
+                              KC_NO,  KC_NO, KC_NO,           KC_NO,  KC_NO, KC_NO
+                 //`------------------------------'         `-----------------------------'
   )
 };
 // clang-format on
